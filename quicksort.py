@@ -1,3 +1,5 @@
+import random
+
 def quicksort(arr):
     if len(arr) < 2:
         return arr
@@ -19,4 +21,17 @@ def quicksort_2(arr):
     right = [i for i in arr[1:] if i >= pivot]
     return quicksort_2(left) + [pivot] + quicksort_2(right)
 
-print(quicksort_2([5,3,4,8,2,9,4,0,1,12]))
+def quicksort_rand(arr):
+    if len(arr) < 2:
+        return arr
+    pivot_index = random.randint(0, len(arr) - 1)
+    pivot = arr[pivot_index]
+
+    arr[pivot_index] = arr[len(arr) - 1]
+
+    left = [i for i in (arr[0:len(arr) - 1]) if i <= pivot]
+    right = [i for i in (arr[0:len(arr) - 1]) if i > pivot]
+    
+    return quicksort_rand(left) + [pivot] + quicksort_rand(right)
+
+print(quicksort_rand([5,3,4,8,2,9,4,0,1,12]))
